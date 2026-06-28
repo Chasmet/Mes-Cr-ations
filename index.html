@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#06111f">
+  <meta name="description" content="Mes Créations - classer ses histoires, saisons et épisodes.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>Mes Créations</title>
+  <style>
+    :root{
+      --bg:#050b14; --panel:#0c1726; --panel2:#111f32; --text:#f8fbff; --muted:#a6b2c3;
+      --blue:#108cff; --blue2:#0368ff; --line:rgba(255,255,255,.1); --radius:24px;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:
+      radial-gradient(circle at 50% -10%,rgba(14,139,255,.22),transparent 35%),
+      linear-gradient(180deg,#061121,#03070d 75%);color:var(--text);min-height:100svh}
+    button,input,textarea,select{font:inherit}
+    button{border:0;color:inherit;cursor:pointer}
+    .app{max-width:520px;margin:auto;min-height:100svh;padding:22px 16px 92px}
+    .top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+    .back,.icon-btn{width:46px;height:46px;border-radius:16px;background:rgba(255,255,255,.08);display:grid;place-items:center;border:1px solid var(--line)}
+    .logo{display:flex;align-items:center;gap:10px;min-width:0}
+    .cube{width:54px;height:54px;border-radius:16px;background:
+      linear-gradient(135deg,#ffcc1a 0 30%,#ff3b22 31% 52%,#0b8bff 53% 78%,#25d54a 79%);
+      box-shadow:0 0 22px rgba(255,204,26,.45);position:relative}
+    .cube:after{content:"";position:absolute;inset:8px;border-radius:10px;border:2px dotted rgba(255,255,255,.45)}
+    .brand{font-weight:1000;letter-spacing:.2px;line-height:.86;font-size:34px}
+    .brand span{display:inline-block;text-shadow:0 5px 0 rgba(0,0,0,.18)}
+    .b1{color:#fff}.b2{color:#168dff}.b3{color:#ff442d}.b4{color:#ffc22a}.b5{color:#38d653}.b6{color:#7f4dff}
+    h1{font-size:34px;line-height:1.05;margin:10px 0 4px}
+    h2{font-size:22px;margin:24px 0 12px;display:flex;align-items:center;gap:10px}
+    .muted{color:var(--muted)}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .primary{background:linear-gradient(180deg,#18a3ff,#0564ff);border-radius:24px;padding:15px 18px;font-weight:900;font-size:19px;box-shadow:0 10px 26px rgba(0,119,255,.35)}
+    .wide{width:100%;display:flex;justify-content:center;align-items:center;gap:10px}
+    .search{display:flex;gap:12px;margin:18px 0}
+    .search input{flex:1;background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:18px;padding:14px 16px;color:var(--text);outline:none}
+    .cards{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
+    .cards::-webkit-scrollbar{display:none}
+    .project-card{min-width:154px;background:var(--panel);border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);scroll-snap-align:start}
+    .thumb{height:112px;display:grid;place-items:center;font-size:54px;position:relative;overflow:hidden}
+    .thumb:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 20%,rgba(255,255,255,.35),transparent 32%)}
+    .ninja{background:linear-gradient(135deg,#61210d,#ff9b2f 45%,#10351f)}.robot{background:linear-gradient(135deg,#22095b,#0d69ca 60%,#010a2c)}
+    .magic{background:linear-gradient(135deg,#48d6ff,#ffe06b 45%,#8757ff)}.hero{background:linear-gradient(135deg,#84d7ff,#78e36b 55%,#ffbf2f)}
+    .pirate{background:linear-gradient(135deg,#0b6bd3,#35dcff 45%,#ffd34c)}.dino{background:linear-gradient(135deg,#1d7f32,#c8ef52)}
+    .ocean{background:linear-gradient(135deg,#009bcb,#022866)}.card-body{padding:12px}.title{font-weight:900;font-size:16px;line-height:1.1}.small{font-size:13px;color:var(--muted)}
+    .continue{display:grid;grid-template-columns:1fr;gap:12px}.continue-card{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:18px;padding:10px}.mini{width:104px;height:76px;border-radius:14px;flex:0 0 auto;font-size:40px}.play{width:46px;height:46px;border-radius:999px;background:rgba(0,0,0,.5);display:grid;place-items:center;position:absolute}
+    .bar{height:6px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#118cff,#57c3ff)}
+    .list{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:22px;overflow:hidden}.item{display:flex;gap:12px;align-items:center;padding:12px;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0}.item .mini{width:88px;height:58px;font-size:34px}
+    .tabs{display:flex;gap:8px;margin:14px 0}.tab{flex:1;border-radius:16px;background:rgba(255,255,255,.07);padding:12px 8px;color:var(--muted);font-weight:800}.tab.active{background:linear-gradient(180deg,#1599ff,#0563ff);color:#fff}
+    .hero-img{height:210px;border-radius:24px;margin:14px 0;display:grid;place-items:center;font-size:90px;box-shadow:var(--shadow);border:1px solid var(--line)}
+    .actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px}.action{background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:18px;padding:12px;font-weight:900}.action.blue{background:linear-gradient(180deg,#1599ff,#0563ff)}
+    .episode{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:18px;padding:10px;margin:10px 0}.num{width:34px;height:34px;border-radius:10px;background:rgba(0,0,0,.55);display:grid;place-items:center;font-weight:900}
+    .form-card{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:18px;padding:14px;margin:10px 0}.form-card input,.form-card textarea{width:100%;background:transparent;border:0;outline:0;color:#fff;margin-top:5px}.form-card textarea{min-height:62px;resize:vertical}.upload{height:170px;border-radius:24px;background:linear-gradient(135deg,#0d6bd2,#47d9ff 48%,#8de64f);display:grid;place-items:center;margin:12px 0;border:1px solid var(--line);overflow:hidden}.dash{border:2px dashed rgba(255,255,255,.9);border-radius:18px;padding:28px 34px;text-align:center;background:rgba(0,0,0,.18);font-weight:900}
+    .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.chip{min-width:48px;height:48px;border-radius:999px;border:3px solid rgba(255,255,255,.2)}.chip.sel{border-color:#fff}
+    .counter{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.05);border-radius:16px;margin-top:12px;padding:8px}.counter button{width:42px;height:42px;border-radius:14px;background:rgba(255,255,255,.1);font-size:24px}.counter b{font-size:26px}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .library-card{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:20px;padding:12px;margin:12px 0}.season-chips{display:flex;gap:8px;overflow-x:auto;margin-top:10px}.season-chip{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:14px;padding:10px 12px;min-width:96px}.add-season{border:1px dashed rgba(17,140,255,.9);color:#34a8ff;background:transparent;border-radius:14px;padding:10px 12px;min-width:114px}
+    .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.stat{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:18px;padding:14px}.stat b{display:block;font-size:30px}
+    .bottom{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;width:min(520px,calc(100% - 24px));height:74px;background:rgba(12,23,38,.92);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:26px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;z-index:20;box-shadow:0 18px 45px rgba(0,0,0,.45)}
+    .nav{background:transparent;color:var(--muted);font-size:12px;font-weight:800;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}.nav.active{color:#168dff}.nav .ico{font-size:23px}.nav.add .ico{background:linear-gradient(180deg,#19a3ff,#0563ff);color:#fff;width:54px;height:54px;border-radius:999px;display:grid;place-items:center;font-size:34px;margin-top:-24px;box-shadow:0 10px 25px rgba(0,119,255,.45)}
+    .hide{display:none!important}.link{color:#2fa2ff;background:transparent;font-weight:900}.pill{border-radius:16px;background:rgba(255,255,255,.08);border:1px solid var(--line);padding:10px 13px;color:#fff}
+    @media(min-width:430px){.continue{grid-template-columns:1fr 1fr}.project-card{min-width:170px}}
+  </style>
+</head>
+<body>
+<main class="app">
+  <section id="home">
+    <div class="top"><div class="logo"><div class="cube"></div><div class="brand"><span class="b1">Mes</span><br><span class="b2">C</span><span class="b3">r</span><span class="b4">é</span><span class="b5">a</span><span class="b2">t</span><span class="b4">i</span><span class="b6">o</span><span class="b3">n</span><span class="b4">s</span></div></div></div>
+    <button class="primary wide" data-go="form">⊕ Nouvelle création ✨</button>
+    <div class="search"><button class="icon-btn">⌕</button><input id="searchHome" placeholder="Rechercher une création..."></div>
+    <div class="row"><h2>🗂️ Mes projets</h2><button class="link" data-go="library">Tout voir ›</button></div>
+    <div id="projectCards" class="cards"></div>
+    <div class="row"><h2>▶️ Continuer</h2><button class="link" data-go="library">Tout voir ›</button></div>
+    <div id="continueCards" class="continue"></div>
+    <div class="row"><h2>🕘 Récents</h2><button class="link" data-go="library">Tout voir ›</button></div>
+    <div id="recentList" class="list"></div>
+  </section>
+
+  <section id="detail" class="hide">
+    <div class="top"><button class="back" data-go="home">‹</button><div class="logo"><div class="cube"></div><div class="brand" style="font-size:25px"><span class="b1">Mes</span> <span class="b2">Créations</span></div></div></div>
+    <h1 id="detailTitle"></h1><p class="muted" id="detailMeta"></p>
+    <div id="detailHero" class="hero-img ninja"></div>
+    <div class="actions"><button class="action blue">▶ Lire</button><button class="action" data-go="form">✎ Modifier</button><button class="action" id="shareBtn">↗ Partager</button></div>
+    <div class="tabs"><button class="tab active">Épisodes</button><button class="tab">Saisons</button><button class="tab">Infos</button></div>
+    <button class="pill">Saison <span id="seasonNow">1</span>⌄</button>
+    <div id="episodeList"></div>
+    <button class="primary" style="position:fixed;right:18px;bottom:100px;z-index:15" data-go="form">⊕ Épisode ✨</button>
+  </section>
+
+  <section id="form" class="hide">
+    <div class="top"><button class="back" data-go="home">‹</button><div><h1 style="margin:0;font-size:32px">Nouvelle création</h1><div class="muted">Donne vie à ton imagination ! ✨</div></div></div>
+    <div class="upload"><div class="dash">🖼️<br>Ajouter une miniature<br><small>Image 16:9 recommandée</small></div></div>
+    <div class="form-card"><b>✏️ Nom de la création</b><input id="nameInput" placeholder="Ex. Mon monde magique"></div>
+    <div class="form-card"><b>🏷️ Catégorie</b><input id="catInput" placeholder="Ex. Aventure, magie, robot..."></div>
+    <div class="form-card"><b>💬 Description</b><textarea id="descInput" maxlength="200" placeholder="Décris ton histoire en quelques mots..."></textarea><div class="small" id="descCount">0 / 200</div></div>
+    <div class="form-card"><b>🎨 Couleur / Thème</b><div class="chips" id="themeChips"></div></div>
+    <h2>🗂️ Organisation</h2>
+    <div class="grid2">
+      <div class="form-card"><b>Nombre de saisons</b><div class="counter"><button data-count="seasons" data-delta="-1">−</button><b id="seasonsNum">1</b><button data-count="seasons" data-delta="1">+</button></div></div>
+      <div class="form-card"><b>Premier épisode</b><div class="counter"><button data-count="episode" data-delta="-1">−</button><b id="episodeNum">1</b><button data-count="episode" data-delta="1">+</button></div></div>
+    </div>
+    <h2>🎬 Ajouter un épisode</h2>
+    <div class="form-card"><b>🔤 Titre de l’épisode</b><input id="epTitleInput" placeholder="Ex. Le début d’une grande aventure"></div>
+    <div class="form-card"><b>📝 Résumé</b><textarea id="epSummaryInput" maxlength="300" placeholder="Raconte ce qui se passe dans cet épisode..."></textarea></div>
+    <div class="grid2"><button class="action" id="draftBtn">📄 Brouillon</button><button class="primary" id="saveBtn">✓ Enregistrer</button></div>
+  </section>
+
+  <section id="library" class="hide">
+    <div class="top"><div class="logo"><div class="cube"></div><div class="brand"><span class="b1">Bibli</span><span class="b2">o</span><span class="b3">t</span><span class="b5">h</span><span class="b6">è</span><span class="b4">q</span><span class="b3">u</span><span class="b4">e</span></div></div></div>
+    <div class="tabs"><button class="tab">Tous</button><button class="tab active">Séries</button><button class="tab">Saisons</button><button class="tab">Épisodes</button></div>
+    <div class="search"><input id="searchLib" placeholder="Rechercher dans la bibliothèque..."></div>
+    <div id="stats" class="stats"></div>
+    <div id="libraryList"></div>
+  </section>
+</main>
+
+<nav class="bottom">
+  <button class="nav active" data-go="home"><span class="ico">⌂</span>Accueil</button>
+  <button class="nav" data-go="library"><span class="ico">▥</span>Bibliothèque</button>
+  <button class="nav add" data-go="form"><span class="ico">+</span>Ajouter</button>
+  <button class="nav" data-go="home"><span class="ico">☻</span>Profil</button>
+</nav>
+
+<script>
+const THEMES = [
+  {key:'ninja', emoji:'🥷', name:'Aventure Ninja', color:'#ff8a2a'},
+  {key:'robot', emoji:'🤖', name:'Robot Galaxy', color:'#168dff'},
+  {key:'magic', emoji:'🏰', name:'Mon Monde Magique', color:'#7f4dff'},
+  {key:'hero', emoji:'🦸', name:'Les Héros du Parc', color:'#31d65c'},
+  {key:'pirate', emoji:'🏴‍☠️', name:'Les Pirates Rigolos', color:'#00b7ff'},
+  {key:'dino', emoji:'🦖', name:'Dino Aventure', color:'#7bdc34'},
+  {key:'ocean', emoji:'🚢', name:'Explorateurs des Océans', color:'#00d7ff'}
+];
+const defaultProjects = [
+  {id:crypto.randomUUID(),title:'Aventure Ninja',category:'Aventure',desc:'Un jeune ninja inventé part protéger son village.',theme:'ninja',seasons:[{n:1,episodes:[
+    {n:1,title:'Le retour du héros',summary:'Le ninja revient au village après un long voyage.'},
+    {n:2,title:'Le dojo secret',summary:'Entraînement intensif dans un dojo caché.'},
+    {n:3,title:'Le parchemin perdu',summary:'Un ancien parchemin révèle une nouvelle quête.'},
+    {n:4,title:'Le défi du temple',summary:'Affronter les gardiens du temple légendaire.'},
+    {n:5,title:'Le pont interdit',summary:'Une traversée dangereuse commence.'},
+    {n:6,title:'La promesse',summary:'Le héros comprend sa vraie mission.'}]},{n:2,episodes:[
+    {n:1,title:'La forêt rouge',summary:'Une nouvelle menace apparaît.'},{n:2,title:'L’ombre du maître',summary:'Le passé revient.'},{n:3,title:'Le temple secret',summary:'Le héros avance dans sa quête.'},{n:4,title:'La grande course',summary:'Course-poursuite au coucher du soleil.'},{n:5,title:'Le gardien',summary:'Un allié inattendu arrive.'},{n:6,title:'La victoire',summary:'La saison se termine en beauté.'}]}],progress:40,updated:Date.now()-86400000},
+  {id:crypto.randomUUID(),title:'Robot Galaxy',category:'Science-fiction',desc:'Un petit robot explore les planètes.',theme:'robot',seasons:[{n:1,episodes:[1,2,3,4,5,6].map(i=>({n:i,title:['Départ spatial','Planète bleue','Signal inconnu','La mission lunaire','Le robot ami','Retour étoilé'][i-1],summary:'Une aventure dans l’espace.'}))},{n:2,episodes:[1,2,3,4].map(i=>({n:i,title:'Mission '+i,summary:'Nouvelle étape galactique.'}))}],progress:65,updated:Date.now()-7200000},
+  {id:crypto.randomUUID(),title:'Mon Monde Magique',category:'Magie',desc:'Un château volant, des dragons et des secrets.',theme:'magic',seasons:[{n:1,episodes:[1,2,3,4,5].map(i=>({n:i,title:'Sortilège '+i,summary:'Une découverte magique.'}))},{n:2,episodes:[1,2,3,4].map(i=>({n:i,title:'Portail '+i,summary:'Un monde caché se révèle.'}))}],progress:0,updated:Date.now()-259200000},
+  {id:crypto.randomUUID(),title:'Les Héros du Parc',category:'Héros',desc:'Deux enfants inventent des missions au parc.',theme:'hero',seasons:[{n:1,episodes:[1,2,3,4,5,6].map(i=>({n:i,title:'Mission parc '+i,summary:'Une mission rigolote.'}))}],progress:0,updated:Date.now()-3600000},
+  {id:crypto.randomUUID(),title:'Les Pirates Rigolos',category:'Pirates',desc:'Un bateau plein de blagues et de trésors.',theme:'pirate',seasons:[{n:1,episodes:[1,2,3,4,5,6,7].map(i=>({n:i,title:'Trésor '+i,summary:'Une aventure de pirate.'}))}],progress:0,updated:Date.now()-7200000},
+  {id:crypto.randomUUID(),title:'Dino Aventure',category:'Dinosaures',desc:'Un dinosaure sympa cherche ses amis.',theme:'dino',seasons:[{n:1,episodes:[1,2,3,4,5].map(i=>({n:i,title:'Dino '+i,summary:'Une aventure dans la jungle.'}))}],progress:0,updated:Date.now()-86400000}
+];
+let data = JSON.parse(localStorage.getItem('mes-creations-data')||'null') || defaultProjects;
+let currentId = data[0]?.id;
+let formState = {seasons:1,episode:1,theme:'ninja'};
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function saveData(){localStorage.setItem('mes-creations-data',JSON.stringify(data))}
+function themeOf(p){return THEMES.find(t=>t.key===p.theme)||THEMES[0]}
+function epCount(p){return p.seasons.reduce((a,s)=>a+s.episodes.length,0)}
+function modTxt(t){const d=Date.now()-t;if(d<86400000)return 'Modifié il y a '+Math.max(1,Math.round(d/3600000))+' h';if(d<172800000)return 'Modifié hier';return 'Modifié il y a '+Math.round(d/86400000)+' j'}
+function thumb(project, cls='thumb'){let th=themeOf(project);return `<div class="${cls} ${project.theme}"><span style="z-index:1">${th.emoji}</span></div>`}
+function card(p){return `<article class="project-card" data-open="${p.id}">${thumb(p)}<div class="card-body"><div class="title">${p.title}</div><div class="small">${epCount(p)} épisodes</div></div></article>`}
+function renderHome(){
+ const q=($('#searchHome')?.value||'').toLowerCase(); const items=data.filter(p=>p.title.toLowerCase().includes(q));
+ $('#projectCards').innerHTML=items.map(card).join('');
+ $('#continueCards').innerHTML=data.filter(p=>p.progress>0).slice(0,2).map(p=>`<article class="continue-card" data-open="${p.id}">${thumb(p,'thumb mini')}<div style="flex:1"><div class="title">${p.title}</div><div class="small">Saison 1 · Épisode ${Math.max(1,Math.round(epCount(p)*p.progress/100))}</div><div class="small">${p.desc}</div><div class="bar"><i style="width:${p.progress}%"></i></div></div><b class="small">${p.progress} %</b></article>`).join('');
+ $('#recentList').innerHTML=[...data].sort((a,b)=>b.updated-a.updated).slice(0,3).map(p=>`<div class="item" data-open="${p.id}">${thumb(p,'thumb mini')}<div style="flex:1"><div class="title">${p.title}</div><div class="small">Saison ${p.seasons.length} · ${epCount(p)} épisodes</div></div><div class="small">${modTxt(p.updated)}</div></div>`).join('');
+}
+function renderDetail(){
+ const p=data.find(x=>x.id===currentId)||data[0]; if(!p)return;
+ $('#detailTitle').textContent=p.title; $('#detailMeta').textContent=`${epCount(p)} épisodes · ${p.seasons.length} saisons`; $('#seasonNow').textContent=p.seasons[0]?.n||1;
+ $('#detailHero').className='hero-img '+p.theme; $('#detailHero').innerHTML=`<span>${themeOf(p).emoji}</span>`;
+ const eps=p.seasons[0]?.episodes||[];
+ $('#episodeList').innerHTML=eps.map(e=>`<article class="episode">${thumb(p,'thumb mini')}<div class="num">${e.n}</div><div style="flex:1"><div class="title">${e.n}. ${e.title}</div><div class="small">${e.summary}</div></div><div class="small">⋮</div></article>`).join('');
+}
+function renderLibrary(){
+ const creations=data.length, seasons=data.reduce((a,p)=>a+p.seasons.length,0), episodes=data.reduce((a,p)=>a+epCount(p),0);
+ $('#stats').innerHTML=`<div class="stat">🧊<b>${creations}</b><span class="small">créations</span></div><div class="stat">🗓️<b>${seasons}</b><span class="small">saisons</span></div><div class="stat">▶️<b>${episodes}</b><span class="small">épisodes</span></div>`;
+ const q=($('#searchLib')?.value||'').toLowerCase();
+ $('#libraryList').innerHTML=data.filter(p=>p.title.toLowerCase().includes(q)).map(p=>`<article class="library-card" data-open="${p.id}"><div class="row" style="align-items:flex-start">${thumb(p,'thumb mini')}<div style="flex:1"><div class="title" style="font-size:20px">${p.title}</div><div class="small">${p.seasons.length} saison${p.seasons.length>1?'s':''} · ${epCount(p)} épisodes</div><div class="season-chips">${p.seasons.map(s=>`<div class="season-chip"><b>Saison ${s.n}</b><div class="small">${s.episodes.length} épisodes</div></div>`).join('')}<button class="add-season" data-add-season="${p.id}">+ Ajouter<br>une saison</button></div></div><div class="small">⋮</div></div></article>`).join('');
+}
+function go(screen){
+ ['home','detail','form','library'].forEach(id=>$('#'+id).classList.toggle('hide',id!==screen));
+ $$('.nav').forEach(n=>n.classList.toggle('active',n.dataset.go===screen || (screen==='detail'&&n.dataset.go==='home')));
+ if(screen==='home')renderHome(); if(screen==='detail')renderDetail(); if(screen==='library')renderLibrary();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+document.addEventListener('click',e=>{
+ const goBtn=e.target.closest('[data-go]'); if(goBtn){go(goBtn.dataset.go);return}
+ const open=e.target.closest('[data-open]'); if(open){currentId=open.dataset.open;go('detail');return}
+ const count=e.target.closest('[data-count]'); if(count){let key=count.dataset.count;formState[key]=Math.max(1,formState[key]+Number(count.dataset.delta));$('#seasonsNum').textContent=formState.seasons;$('#episodeNum').textContent=formState.episode;return}
+ const chip=e.target.closest('[data-theme]'); if(chip){formState.theme=chip.dataset.theme;renderChips();return}
+ const addSeason=e.target.closest('[data-add-season]'); if(addSeason){let p=data.find(x=>x.id===addSeason.dataset.addSeason);let n=p.seasons.length+1;p.seasons.push({n,episodes:[]});p.updated=Date.now();saveData();renderLibrary();return}
+});
+$('#saveBtn').addEventListener('click',()=>{
+ const title=$('#nameInput').value.trim()||'Nouvelle création';
+ const episodeTitle=$('#epTitleInput').value.trim()||'Premier épisode';
+ const summary=$('#epSummaryInput').value.trim()||'Décris ton épisode plus tard.';
+ const seasons=Array.from({length:formState.seasons},(_,i)=>({n:i+1,episodes:i===0?[{n:formState.episode,title:episodeTitle,summary}]:[]}));
+ const p={id:crypto.randomUUID(),title,category:$('#catInput').value.trim(),desc:$('#descInput').value.trim()||'Création personnelle.',theme:formState.theme,seasons,progress:0,updated:Date.now()};
+ data.unshift(p); currentId=p.id; saveData(); clearForm(); go('detail');
+});
+$('#draftBtn').addEventListener('click',()=>$('#saveBtn').click());
+$('#descInput').addEventListener('input',()=>$('#descCount').textContent=$('#descInput').value.length+' / 200');
+$('#searchHome').addEventListener('input',renderHome); $('#searchLib').addEventListener('input',renderLibrary);
+$('#shareBtn').addEventListener('click',async()=>{const p=data.find(x=>x.id===currentId);const text=`${p.title} - ${epCount(p)} épisodes dans Mes Créations`;if(navigator.share)await navigator.share({title:p.title,text});else alert(text)});
+function renderChips(){ $('#themeChips').innerHTML=THEMES.map(t=>`<button class="chip ${formState.theme===t.key?'sel':''}" data-theme="${t.key}" title="${t.name}" style="background:${t.color}">${t.emoji}</button>`).join('') }
+function clearForm(){['nameInput','catInput','descInput','epTitleInput','epSummaryInput'].forEach(id=>$('#'+id).value='');formState={seasons:1,episode:1,theme:'ninja'};$('#seasonsNum').textContent='1';$('#episodeNum').textContent='1';renderChips()}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{})}
+renderChips(); renderHome();
+</script>
+</body>
+</html>
