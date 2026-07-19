@@ -1,19 +1,35 @@
 {
+  "id": "./",
   "name": "Mes Créations",
   "short_name": "Créations",
-  "description": "Classe tes histoires par créations, saisons et épisodes.",
+  "description": "Classe tes projets, saisons personnalisées et épisodes vidéo sur ton téléphone.",
+  "lang": "fr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#050b14",
-  "theme_color": "#06111f",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "portrait-primary",
+  "background_color": "#040912",
+  "theme_color": "#071525",
+  "categories": ["entertainment", "productivity"],
   "icons": [
     {
       "src": "icon.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nouvelle création",
+      "short_name": "Ajouter",
+      "url": "./?action=new"
+    },
+    {
+      "name": "Bibliothèque",
+      "short_name": "Bibliothèque",
+      "url": "./?screen=library"
     }
   ]
 }
