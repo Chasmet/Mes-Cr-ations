@@ -1,0 +1,20 @@
+name: CHK IndexNow
+
+on:
+  push:
+    branches:
+      - chk-music-site
+
+permissions:
+  contents: read
+
+jobs:
+  notify-indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Render auto-deploy
+        run: sleep 30
+      - name: Notify IndexNow
+        run: |
+          curl --fail-with-body --retry 3 --retry-delay 10 \
+            "https://api.indexnow.org/indexnow?url=https%3A%2F%2Fchk-embleme-officiel.onrender.com%2F&key=cc6241b621baae121295ce43c23353b6"
