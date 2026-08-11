@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://chk-embleme-officiel.onrender.com/sitemap.xml
